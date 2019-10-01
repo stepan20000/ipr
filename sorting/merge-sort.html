@@ -23,7 +23,10 @@
             var initialArray = generateArray(len);
             initialArrayContainer.textContent = JSON.stringify(initialArray);
 
+            var startPoint = Date.now();
             var result = mergeSort(initialArray);
+            var endPoint = Date.now();
+            console.log(endPoint - startPoint);
             resultContainer.textContent = JSON.stringify(result);
         }
 
