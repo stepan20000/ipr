@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Merge sort</title>
+</head>
+
+<body>
+    <p>
+        <input id="input" type="number" onchange="start()">
+    </p>
+    <p id="initial-array"></p>
+    <p id="result"></p>
+
+    <script>
+        var input = document.getElementById('input');
+        var initialArrayContainer = document.getElementById('initial-array');
+        var resultContainer = document.getElementById('result');
+
+        function start() {
+            var len = input.value && Number(input.value);
+            if (!len) { console.log('invalid input'); return; }
+            var initialArray = generateArray(len);
+            initialArrayContainer.textContent = JSON.stringify(initialArray);
+
+            var result = mergeSort(initialArray);
+            resultContainer.textContent = JSON.stringify(result);
+        }
+
+        function generateArray(len) {
+            var arr = [];
+            var num;
+            for (var i = 0; i < len; i++) {
+                num = Math.round(Math.random() * len);
+                // uncomment for getting an array with unique values
+                // while (arr.includes(num)) {
+                //     num = Math.round(Math.random() * len);
+                // }
+                arr.push(num);
+            }
+            return arr;
+        }
+
+        function mergeSort(arr) {
+            if (arr.length < 2) { return arr; }
+            var middle = Math.round(arr.length / 2);
+            var maxLen;
+            var result;
+            var left =  mergeSort(arr.slice(0, middle));
+            var right =mergeSort(arr.slice(middle));
+
+            return merge(left, right);
+        }
+
+        function merge(left, right) {
+                var res = [];
+                var l = 0, r = 0;
+
+                while(l < left.length && r < right.length) {
+                    if (left[l] < right[r]) {
+                        res.push(left[l]);
+                        l++;
+                    } else {
+                        res.push(right[r]);
+                        r++;
+                    }
+                }
+                if (l < left.length) {
+                    res.push(left[l]);
+                    l++;
+                }
+                while(r < right.length) {
+                    res.push(right[r]);
+                    r++;
+                }
+                return res;
+            }
+
+    </script>
+</body>
+
+</html>

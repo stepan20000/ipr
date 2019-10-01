@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>This is the title of the webpage!</title>
+</head>
+
+<body>
+    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this
+        <strong>p</strong> tag and its contents.
+    </p>
+
+    <script>
+        const arr = [2, 5, 6, 8, 6];
+
+        function foo(arr) {
+            const isOdd = num => !!(num % 2);
+            const isEven = num => !isOdd(num);
+            let lookingFor;
+            switch (true) {
+                case isOdd(arr[0]) && isOdd(arr[1]):
+                    lookingFor = isEven;
+                    break;
+                case isEven(arr[0]) && isEven(arr[1]):
+                    lookingFor = isOdd;
+                    break;
+                case isOdd(arr[0]) == isOdd(arr[2]):
+                    return arr[1];
+                default:
+                    return arr[0];
+            }
+
+            return arr.find(num => lookingFor(num));
+        }
+
+        console.log(foo(arr));
+    </script>
+</body>
+
+</html>
